@@ -243,6 +243,10 @@ Accounts.registerLoginHandler(function(options) {
 			});
 		}
 
+		Meteor.defer(function() {
+			return RocketChat.callbacks.run('afterCreateUser', user);
+		});
+
 	}
 
 	return { userId: user._id };

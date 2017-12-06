@@ -1,6 +1,4 @@
 RocketChat.models.CredentialTokens = new class extends RocketChat.models._Base {
-	const validForMilliseconds = 60000;		// Valid for 60 seconds
-
 	constructor() {
 		super('credential_tokens');
 
@@ -8,10 +6,11 @@ RocketChat.models.CredentialTokens = new class extends RocketChat.models._Base {
 	}
 
 	create(_id, userInfo) {
+		const validForMilliseconds = 60000;		// Valid for 60 seconds
 		const token = {
 			_id,
 			userInfo,
-			expireAt: new Date(Date.now() + this.validForMilliseconds)
+			expireAt: new Date(Date.now() + validForMilliseconds)
 		};
 
 		this.insert(token);
